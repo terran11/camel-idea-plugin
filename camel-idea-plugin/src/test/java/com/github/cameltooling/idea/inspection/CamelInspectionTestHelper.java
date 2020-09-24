@@ -27,19 +27,7 @@ public abstract class CamelInspectionTestHelper extends InspectionTestCase {
     @NotNull
     @Override
     protected LightProjectDescriptor getProjectDescriptor() {
-        LanguageLevel languageLevel = LanguageLevel.JDK_1_8;
-        return new DefaultLightProjectDescriptor() {
-            @Override
-            public Sdk getSdk() {
-                String compilerOption = JpsJavaSdkType.complianceOption(languageLevel.toJavaVersion());
-                return JavaSdk.getInstance().createJdk( "java " + compilerOption, BUILD_MOCK_JDK_DIRECTORY + compilerOption, false );
-            }
-
-            @Override
-            public void configureModule(@NotNull Module module, @NotNull ModifiableRootModel model, @NotNull ContentEntry contentEntry) {
-                model.getModuleExtension( LanguageLevelModuleExtension.class ).setLanguageLevel( languageLevel );
-            }
-        };
+        return JAVA_8;
     }
 
     @Override

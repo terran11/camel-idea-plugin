@@ -16,15 +16,6 @@
  */
 package com.github.cameltooling.idea.gutter;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import javax.swing.Icon;
 import com.github.cameltooling.idea.reference.blueprint.BeanReference;
 import com.github.cameltooling.idea.reference.blueprint.model.ReferenceableBeanId;
 import com.github.cameltooling.idea.service.CamelPreferenceService;
@@ -39,14 +30,20 @@ import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleUtilCore;
 import com.intellij.openapi.util.NotNullLazyValue;
 import com.intellij.psi.PsiAnnotation;
-import com.intellij.psi.PsiAnnotationMemberValue;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiIdentifier;
-import com.intellij.psi.PsiReference;
-import com.intellij.psi.PsiReferenceExpression;
 import com.intellij.psi.PsiType;
 import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
+
+import javax.swing.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Provider that adds the Camel icon in the gutter when it detects a BeanInject annotation and can find matching
@@ -58,7 +55,7 @@ public class BeanInjectLineMarkerProvider extends RelatedItemLineMarkerProvider 
 
     @Override
     protected void collectNavigationMarkers(@NotNull PsiElement element,
-                                            @NotNull Collection<? super RelatedItemLineMarkerInfo> result) {
+                                            @NotNull Collection<? super RelatedItemLineMarkerInfo<?>> result) {
         PsiAnnotation beanInjectAnnotation = getBeanInjectAnnotation(element);
         if (beanInjectAnnotation != null) {
             Module module = ModuleUtilCore.findModuleForPsiElement(element);

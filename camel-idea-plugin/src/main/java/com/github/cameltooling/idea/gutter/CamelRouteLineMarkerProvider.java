@@ -16,12 +16,6 @@
  */
 package com.github.cameltooling.idea.gutter;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
-import javax.swing.*;
 import com.github.cameltooling.idea.service.CamelPreferenceService;
 import com.github.cameltooling.idea.service.CamelService;
 import com.github.cameltooling.idea.util.CamelIdeaUtils;
@@ -53,6 +47,13 @@ import com.intellij.psi.xml.XmlToken;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
+
 
 /**
  * Provider that adds the Camel icon in the gutter when it detects a Camel route.
@@ -70,7 +71,7 @@ public class CamelRouteLineMarkerProvider extends RelatedItemLineMarkerProvider 
 
     @Override
     protected void collectNavigationMarkers(@NotNull PsiElement element,
-                                            Collection<? super RelatedItemLineMarkerInfo> result) {
+                                           Collection<? super RelatedItemLineMarkerInfo<?>> result) {
         //TODO: remove this when IdeaUtils.isFromJavaMethodCall will be fixed
         if (isJavaTokenLiteralExpression(element)
             || isXmlTokenLiteralExpression(element)
